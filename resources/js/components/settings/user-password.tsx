@@ -51,7 +51,7 @@ export const UserPassword = ({user}:{user:User}) => {
                         >
                             <SubmitBtn
                                 processing={processing}
-                                className="w-[70px]"
+                                className="w-17.5"
                             >
                                 Save
                             </SubmitBtn>

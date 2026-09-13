@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Save, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRoute } from "ziggy-js";
+import { cn } from "@/lib/utils";
 
 type GradeWithSubjects = Grade & {
     subjects: Subject[];
@@ -71,16 +72,25 @@ export default function ShowStudentMark({
 
     return (
         <div>
-            <div>
-                <a href={route('mark.pdf', [student.id, term])}>Pdf</a>
+            <div className="flex items-center justify-end">
+                <a
+                    href={route('mark.pdf', [student.id, term])}
+                    
+                >
+                    <img
+                        src="/pdf-logo.png" alt="pdf-logo"
+                        className="object-center object-cover h-auto w-6 rounded-sm"
+                    />
+                </a>
             </div>
             <Form
                 method="put"
-                action={route('mark.update', cy)}
+                action={route('mark.update', student.id)}
             >
                 {({ processing, errors }) => (
                     <>
                         <Table>
+                            
                             <TableHeader>
                                 <TableHead>Subject</TableHead>
                                 <TableHead>Weight</TableHead>
@@ -96,7 +106,7 @@ export default function ShowStudentMark({
                                                 {subject.name}
                                             </TableCell>
                                             <TableCell>
-                                                {subject.coefficient}
+                                                {subject.weight}
                                             </TableCell>
                                         <TableCell
                                             onClick={()=>selectCell(1, subject.id)}
@@ -106,9 +116,11 @@ export default function ShowStudentMark({
                                                     <Field className="w-13">
                                                         <input name="subject_id" value={subject.id} hidden/>
                                                         <input name="grade" value={grade.id} hidden/>
-                                                        <input name="term" value={term} hidden/>
-                                                        <input name="weight" value={subject.coefficient} hidden/>
-                                                        <Input name="mark" defaultValue={findMark(term_1, subject.id)} className="px-1"/>
+                                                        <input name="term" value={1} hidden/>
+                                                        <input name="weight" value={subject.weight} hidden/>
+                                                        <Input name="mark" defaultValue={findMark(term_1, subject.id)}
+                                                            className={cn('px-1', {'border border-red-500 ring-red-500 ring-2': errors['mark']})}
+                                                    />
                                                     </Field>
                                                 :findMark(term_1, subject.id)??'-'}
                                             </TableCell>
@@ -120,8 +132,8 @@ export default function ShowStudentMark({
                                                     <Field className="w-13">
                                                         <input name="subject_id" value={subject.id} hidden/>
                                                         <input name="grade" value={grade.id} hidden/>
-                                                        <input name="term" value={term} hidden/>
-                                                        <input name="weight" value={subject.coefficient} hidden/>
+                                                        <input name="term" value={2} hidden/>
+                                                        <input name="weight" value={subject.weight} hidden/>
                                                         <Input name="mark" defaultValue={findMark(term_2, subject.id)} className="px-1"/>
                                                     </Field>
                                                 :findMark(term_2, subject.id) ??'-'}
@@ -134,8 +146,8 @@ export default function ShowStudentMark({
                                                     <Field className="w-13">
                                                         <input name="subject_id" value={subject.id} hidden/>
                                                         <input name="grade" value={grade.id} hidden/>
-                                                        <input name="term" value={term} hidden/>
-                                                        <input name="weight" value={subject.coefficient} hidden/>
+                                                        <input name="term" value={3} hidden/>
+                                                        <input name="weight" value={subject.weight} hidden/>
                                                         <Input name="mark" defaultValue={findMark(term_3, subject.id)} className="px-1"/>
                                                     </Field>
                                                 :findMark(term_3, subject.id)??'-'}
@@ -146,16 +158,17 @@ export default function ShowStudentMark({
                                             {edit && cy === subject.id && <div
                                                 className="absolute inset-0 pr-2 flex justify-end items-center gap-2"
                                             >
-                                            <button
-                                                type="submit"
-                                                className="text-emerald-500"
-                                            ><Save /></button>
-                                            <Button
-                                                type="button"
-                                                    onClick={handleCancel}
-                                                    variant={"outline"}
-                                                className="text-red-500"
-                                            ><X /></Button>
+                                                <button
+                                                    type="submit"
+                                                    className="text-emerald-500"
+                                                    disabled={processing}
+                                                ><Save /></button>
+                                                <Button
+                                                    type="button"
+                                                        onClick={handleCancel}
+                                                        variant={"outline"}
+                                                    className="text-red-500"
+                                                ><X /></Button>
                                         </div>}</TableCell>
                                         </TableRow>
                                     )

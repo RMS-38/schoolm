@@ -11,6 +11,7 @@ import type { Student } from "@/types/student";
 import { useRoute } from "ziggy-js";
 import { useEffect } from "react";
 import { toast } from "sonner";
+import { PaginationLinks } from "@/components/pagination-links";
 
 
 type StudentWithGrade = Student &{
@@ -101,6 +102,9 @@ export default function StudentIndex({ students}: Props) {
                         </Link>
                     </Card>
                 ))}
+            </div>
+            <div>
+                <PaginationLinks objects={students}/>
             </div>
         </>
     )

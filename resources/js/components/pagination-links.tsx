@@ -1,8 +1,14 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import type { Paginated } from "@/types/paginated"
-import { Pagination, PaginationContent, PaginationItem, PaginationLink } from "./ui/pagination"
 import { Link } from "@inertiajs/react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { Paginated } from "@/types/paginated"
+import {
+    Pagination,
+    PaginationContent,
+    PaginationItem
+} from "./ui/pagination"
+
+
 
 
 export const PaginationLinks = <T,>({ objects }: { objects: Paginated<T> }) => {
@@ -39,7 +45,7 @@ export const PaginationLinks = <T,>({ objects }: { objects: Paginated<T> }) => {
                                 {makeLabel(link.label)}
                             </Link> :
                                 <span
-                                    className="h-8 w-8 flex items-center justify-center"
+                                    className="h-8 w-8 flex text-gray-500 items-center justify-center"
                                 >{makeLabel(link.label)}</span>}
                         </PaginationItem>
                     </>)}

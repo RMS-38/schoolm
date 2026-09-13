@@ -1,15 +1,14 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'home')->name('home');
-Route::inertia('/about', 'about')
+Route::get('/dashboard', DashboardController::class)
     ->middleware(['auth', 'verified'])
-    ->name('about');
-Route::inertia('/contact', 'contact')->name('contact');
-
+    ->name('dashboard');
 Route::resource('student', StudentController::class);
 
 require __DIR__ . '/grade.php';

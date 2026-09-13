@@ -1,5 +1,5 @@
 ﻿import { Link } from "@inertiajs/react";
-import { BookCopy, ChartCandlestick, Home, Info, Phone, Users } from "lucide-react";
+import { BookCopy, ChartCandlestick, LayoutDashboard, Phone, Users } from "lucide-react";
 import type { NavItem } from "@/types/navigation";
 import { useRoute } from "ziggy-js";
 import { NavMain } from "./nav-main";
@@ -9,9 +9,9 @@ import { Sidebar, SidebarContent, SidebarFooter,  SidebarHeader, SidebarMenu, Si
 
 const NavItems: NavItem[] = [
     {
-       title: 'Home',
-        href: '/',
-        icon: Home,
+        title: 'Dashboard',
+        href: '/dashboard',
+        icon: LayoutDashboard
     },
     {
         title: 'Subject',
@@ -27,11 +27,6 @@ const NavItems: NavItem[] = [
         title: 'Student',
         href: '/student',
         icon: Users
-    },
-    {
-        title: 'Contact',
-        href: '/contact',
-        icon: Phone
     }
 ] as const;
 

@@ -67,9 +67,9 @@ class GradeController extends Controller
         $grade->load('subjects');
         $students = $grade->students()->paginate(8);
 
+        // dd($reportCards, $grade->yearReportCards());
         return Inertia::render('grade/show', [
             'grade' => $grade,
-            'students' => $students,
             'reportCards' => $reportCards,
             'yearReportsCards' => $grade->yearReportCards()
         ]);

@@ -17,7 +17,7 @@ export const SelectTerm = ({name, onChange}:{name:string, onChange:(value:string
             name={name} onValueChange={(value) => {
             onChange(value as string)
             }}
-            value={params.term ?? ""}
+            defaultValue={params.term ?? items[1].value}
         >
             <SelectTrigger
                 className="w-35"

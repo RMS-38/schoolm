@@ -2,7 +2,7 @@ import { Form, Link,  } from "@inertiajs/react";
 import { Save, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import type { Report, Reports, ReportYears } from "@/types/report";
+import type { Report, ReportYear } from "@/types/report";
 import type { Subject } from "@/types/subject"
 import {  useRoute } from "ziggy-js";
 import { SelectTerm } from "../select-term";
@@ -10,17 +10,16 @@ import { Button } from "../ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table"
 
 
-
 interface Props{
     subjects: Subject[];
-    reports: Reports;
-    yearReport: ReportYears
+    reports: Report[];
+    yearReport: ReportYear[];
     onTermChange: (value: string) => void
     grade_id: number
 }
 export const Marks = ({ subjects, reports,yearReport, onTermChange, grade_id }: Props) => {
     const route = useRoute();
-     const params = route().params
+    const params = route().params
     const [editId, setEditId] = useState(0);
     const [edit, setEdit] = useState(false);
 
@@ -46,7 +45,7 @@ export const Marks = ({ subjects, reports,yearReport, onTermChange, grade_id }: 
     return (
         <div
             className="mt-2"
-        >{params.term}
+        >
             <Form
                 method="post"
                 action={route('mark.store', editId)}
@@ -61,7 +60,12 @@ export const Marks = ({ subjects, reports,yearReport, onTermChange, grade_id }: 
                                 params.term === '4'
                                     ? route('year.pdf', grade_id)
                                     : route('marks.pdf', [grade_id,params.term??1])
-                            }>pdf</a>
+                            }>
+                                <img
+                                    src="/pdf-logo.png" alt="pdf-logo"
+                                    className="object-center object-cover h-auto w-6 rounded-sm"
+                                />
+                            </a>
                             {Object.values(errors).map((e, i) => (
                                 <p key={i}
                                     className="text-red-500 text-sm"
@@ -116,7 +120,7 @@ export const Marks = ({ subjects, reports,yearReport, onTermChange, grade_id }: 
                         <TableBody>
                             {params.term === '4'
                                 ?
-                                yearReport.data.map(r => (
+                                yearReport.map(r => (
                                     <TableRow
                                         key={r.id}
                                         className="relative"
@@ -150,7 +154,7 @@ export const Marks = ({ subjects, reports,yearReport, onTermChange, grade_id }: 
                                     </TableRow>
                                 ))
                                 :
-                                reports.data.map(r => (
+                                reports.map(r => (
                                 <TableRow key={r.id}
                                     className="relative"
                                     onClick={() => {

@@ -95,12 +95,30 @@ class MarkController extends Controller
 
     public function cardsPdf(Grade $grade, int $term)
     {
-        dd($grade, $term);
+        $grade->load('subjects');
+
+        $reports = $grade->reportCards($term);
+
+        $pdf = Pdf::loadView('pdf.term', [
+            'reports' => $reports,
+            'grade' => $grade,
+            'subjects' => $grade->subjects()->get()->toArray(),
+            'term' => $term,
+        ])->setPaper('a4', 'portrait');
+
+        return $pdf->stream('reports.pdf');
     }
 
     public function reportYearPdf(Grade $grade)
     {
-        dd($grade->yearReportCards());
+        $year = $grade->yearReportCards();
+
+        $pdf = Pdf::loadView('pdf.year', [
+            'reports' => $year,
+            'grade' => $grade
+        ])->setPaper('a4');
+
+        return $pdf->stream('reportsYear.pdf');
     }
 
     /**
@@ -128,6 +146,7 @@ class MarkController extends Controller
                 'weight' => $validated['weight']
             ]
         );
+        return back();
     }
 
     /**

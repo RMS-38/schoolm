@@ -15,8 +15,7 @@ import {
 import GradeLayout from "@/layouts/grade-layout";
 import Layout from "@/layouts/layout";
 import type { Grade } from "@/types/grade";
-import type { Reports, ReportYears } from "@/types/report";
-import type { Students } from "@/types/student";
+import type {  Report, ReportYear } from "@/types/report";
 import type { Subject } from "@/types/subject";
 import { useRoute } from "ziggy-js";
 
@@ -26,9 +25,8 @@ type GradeWithSubject = Grade & {
 
 interface Props{
     grade: GradeWithSubject;
-    students: Students;
-    reportCards: Reports;
-    yearReportsCards: ReportYears
+    reportCards: Report[];
+    yearReportsCards: ReportYear[];
 }
 
 export default function GradeShow({ grade, reportCards, yearReportsCards}: Props) {

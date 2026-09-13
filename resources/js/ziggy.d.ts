@@ -2,8 +2,7 @@
 declare module 'ziggy-js' {
   interface RouteList {
     "home": [],
-    "about": [],
-    "contact": [],
+    "dashboard": [],
     "student.index": [],
     "student.create": [],
     "student.store": [],
@@ -131,6 +130,17 @@ declare module 'ziggy-js' {
             "binding": "id"
         }
     ],
+    "mark.pdf": [
+        {
+            "name": "student",
+            "required": true,
+            "binding": "id"
+        },
+        {
+            "name": "term",
+            "required": true
+        }
+    ],
     "year.pdf": [
         {
             "name": "grade",
@@ -169,19 +179,9 @@ declare module 'ziggy-js' {
     ],
     "mark.update": [
         {
-            "name": "mark",
-            "required": true
-        }
-    ],
-    "mark.pdf": [
-        {
             "name": "student",
             "required": true,
             "binding": "id"
-        },
-        {
-            "name": "term",
-            "required": true
         }
     ],
     "storage.local": [

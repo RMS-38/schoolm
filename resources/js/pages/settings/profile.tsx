@@ -23,7 +23,7 @@ export default function ProfileSetting() {
     const avatarInput = useRef<HTMLInputElement|null>(null)
 
     if (flash.status) {
-        toast.success(flash.status, { position: 'top-right' });
+        toast.success(flash.status, { position: 'top-left' });
     }
 
     const selectImage = (e: SyntheticEvent<HTMLInputElement>) => {
@@ -57,13 +57,13 @@ export default function ProfileSetting() {
         }
     }
 
-    useEffect(() => {
-    return () => {
-        if (avatar) {
-            URL.revokeObjectURL(avatar);
-        }
-    };
-}, [avatar]);
+//     useEffect(() => {
+//     return () => {
+//         if (avatar) {
+//             URL.revokeObjectURL(avatar);
+//         }
+//     };
+// }, [avatar]);
 
     
     return (
