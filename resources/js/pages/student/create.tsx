@@ -1,6 +1,6 @@
 import { StudentForm } from "@/components/student/student-form";
-import GradeLayout from "@/layouts/grade-layout";
 import Layout from "@/layouts/layout";
+import NestedLayout from "@/layouts/nested-layout";
 
 export default function StudentCreate() {
     return (
@@ -10,7 +10,7 @@ export default function StudentCreate() {
 
 StudentCreate.layout = [
     [Layout],
-    [GradeLayout, {
+    [NestedLayout, {
         title: 'Inscriptions',
         breadCrumb: [
                 { title: 'Student', routeName: 'student.index' },

@@ -14,7 +14,7 @@ interface Props{
     title: string;
     breadCrumb?: BreadCrumb[];
 }
-export default function GradeLayout({
+export default function NestedLayout({
     children, title, breadCrumb}:Props) {
     return (<>
         <Head title={title} />

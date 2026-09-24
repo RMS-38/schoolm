@@ -3,13 +3,13 @@ import { toast } from "sonner";
 import { PaginationLinks } from "@/components/pagination-links";
 import { CreateSubjectDialog } from "@/components/subjects/create-subject-dialog";
 import { SubjectTable } from "@/components/subjects/subject-table";
-import type{ Subjects } from "@/types/subject";
-
+import type { PageProps } from "@/types/page-props";
+import type { Subjects } from "@/types/subject";
 
 export default function SubjectIndex({subjects}:{subjects: Subjects}) {
-    const { flash } = usePage();
+    const { flash } = usePage<PageProps>().props;
     
-    if (flash.status) {
+    if (flash?.status) {
         toast.success(flash.status, {position:'top-right'})
     }
 

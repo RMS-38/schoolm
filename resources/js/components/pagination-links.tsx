@@ -32,7 +32,7 @@ export const PaginationLinks = <T,>({ objects }: { objects: Paginated<T> }) => {
         >
             <Pagination className="mx-3 justify-start">
                 <PaginationContent>
-                    {objects.links.map((link,i) => <>
+                    {objects.links.map((link,i) =>
                         <PaginationItem key={i}
                             className="flex gap-1 items-center"
                         >
@@ -48,7 +48,7 @@ export const PaginationLinks = <T,>({ objects }: { objects: Paginated<T> }) => {
                                     className="h-8 w-8 flex text-gray-500 items-center justify-center"
                                 >{makeLabel(link.label)}</span>}
                         </PaginationItem>
-                    </>)}
+                    )}
                 </PaginationContent>
             </Pagination>
             <p

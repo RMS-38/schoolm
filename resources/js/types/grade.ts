@@ -11,3 +11,4 @@ export type Grade = {
 }
 
 export type Grades = Paginated<Grade>;
+

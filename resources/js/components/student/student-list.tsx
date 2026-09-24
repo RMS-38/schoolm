@@ -1,6 +1,6 @@
-import { Link } from "@inertiajs/react";
+import {  router } from "@inertiajs/react";
 import { AtSign, Phone } from "lucide-react";
-import type { Students } from "@/types/student";
+import type { StudentsWithGrade } from "@/types/student";
 import CalculateAge from "@/utils/calcul-age";
 import { useRoute } from "ziggy-js";
 import { PaginationLinks } from "../pagination-links";
@@ -14,14 +14,16 @@ import {
 } from "../ui/table";
 
 
-export const StudentList = ({ students }: { students: Students }) => {
+
+
+
+export const StudentList = ({ students }: {students:StudentsWithGrade}) => {
     const route = useRoute();
     
     return (
         <div
-            className="mt-8"
+            className="mt-8 overflow-x-scroll"
         >
-            <div>Search</div>
             <div>
                 <Table>
                     <TableHeader>
@@ -41,6 +43,7 @@ export const StudentList = ({ students }: { students: Students }) => {
                             <TableRow
                                 key={student.id}
                                 className="relative"
+                                onClick={()=>router.visit(route("student.show", student.id))}
                             >
                                 <TableCell
                                     className="w-10 h-10"
@@ -76,13 +79,6 @@ export const StudentList = ({ students }: { students: Students }) => {
                                 <TableCell>
                                     {student.address}
                                 </TableCell>
-                                <Link
-                                    href={route('grade.showStudent',  student.id)}
-                                >
-                                    <span
-                                        className="absolute inset-0"
-                                    ></span>
-                                </Link>
                             </TableRow>
                         ))}
                     </TableBody>

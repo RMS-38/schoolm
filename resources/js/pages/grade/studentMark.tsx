@@ -1,20 +1,27 @@
-import { Form, Link, setLayoutProps } from "@inertiajs/react"
-import GradeLayout from "@/layouts/grade-layout"
-import Layout from "@/layouts/layout"
-import type { Grade } from "@/types/grade";
-import type { Report, ReportYear } from "@/types/report";
-import type{ Subject } from "@/types/subject";
-import { Student } from "@/types/student";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Form, setLayoutProps } from "@inertiajs/react"
+import { Save, X } from "lucide-react";
 import { useState } from "react";
-import { Separator } from "@/components/ui/separator";
-import { Numerals } from "react-day-picker";
+import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Save, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useRoute } from "ziggy-js";
+import { Separator } from "@/components/ui/separator";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow
+} from "@/components/ui/table";
+import Layout from "@/layouts/layout"
+import NestedLayout from "@/layouts/nested-layout"
 import { cn } from "@/lib/utils";
+import type { Grade } from "@/types/grade";
+import type { Report } from "@/types/report";
+import type { Student } from "@/types/student";
+import type { Subject } from "@/types/subject";
+
+import { useRoute } from "ziggy-js";
 
 type GradeWithSubjects = Grade & {
     subjects: Subject[];
@@ -205,5 +212,5 @@ export default function ShowStudentMark({
 
 ShowStudentMark.layout = {
     layout:Layout,
-    grade: GradeLayout
+    grade: NestedLayout
 }

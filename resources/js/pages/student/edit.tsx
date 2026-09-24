@@ -1,7 +1,7 @@
 import { setLayoutProps } from "@inertiajs/react";
 import { StudentForm } from "@/components/student/student-form";
-import GradeLayout from "@/layouts/grade-layout";
 import Layout from "@/layouts/layout";
+import NestedLayout from "@/layouts/nested-layout";
 import type{ Grade } from "@/types/grade";
 import type{ Student } from "@/types/student";
 
@@ -26,5 +26,5 @@ export default function StudentEdit({ student }: { student: StudentWithGrade }) 
 
 StudentEdit.layout = {
     Layout,
-    student: GradeLayout
+    student: NestedLayout
 }

@@ -1,6 +1,6 @@
 import { GradeForm } from "@/components/grades/grade-form";
-import GradeLayout from "@/layouts/grade-layout";
 import Layout from "@/layouts/layout";
+import NestedLayout from "@/layouts/nested-layout";
 import type { Subject } from "@/types/subject";
 
 export default function CreateGrade({subjects}:{subjects:Subject[]}) {
@@ -16,7 +16,7 @@ export default function CreateGrade({subjects}:{subjects:Subject[]}) {
 
 CreateGrade.layout = [
     [Layout],
-    [GradeLayout,
+    [NestedLayout,
         {
             title: 'Create Grade',
             breadCrumb: [

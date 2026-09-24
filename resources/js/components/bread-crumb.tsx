@@ -22,25 +22,30 @@ export const BreadCrumb = ({ items }: Props) => {
     return (
         <Breadcrumb>
             <BreadcrumbList>
+                
                 {normalizedItems.map((item, i) => {
-                    return <BreadcrumbItem key={i}>
-                        {item.currentPage
-                            ? <BreadcrumbPage>{ item.title }</BreadcrumbPage>
-                            :<><BreadcrumbLink render={
-                                    <Link
-                                        href={item.params
-                                            ? route(item.routeName, item.params)
-                                            :route(item.routeName)}
-                                    >
-                                        {item.title}
-                                    </Link>
 
-                                }
-                                />
-                                <BreadcrumbSeparator />
-                            </>
-                        }
-                    </BreadcrumbItem>
+                    return (
+                    <div key={i} className="flex items-center gap-1">
+                        <BreadcrumbItem>
+                            {item.currentPage
+                                ? <BreadcrumbPage>{ item.title }</BreadcrumbPage>
+                                :<><BreadcrumbLink render={
+                                        <Link
+                                            href={item.params
+                                                ? route(item.routeName, item.params)
+                                                :route(item.routeName)}
+                                        >
+                                            {item.title}
+                                        </Link>
+                                    }
+                                    />
+                                    
+                                </>
+                            }
+                        </BreadcrumbItem>
+                        {!item.currentPage&&<BreadcrumbSeparator />}
+                    </div>)
                 })}
             </BreadcrumbList>
         </Breadcrumb>

@@ -4,18 +4,17 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import GradeLayout from "@/layouts/grade-layout";
 import Layout from "@/layouts/layout";
+import NestedLayout from "@/layouts/nested-layout";
 import type { Grades } from "@/types/grade";
+import type { PageProps } from "@/types/page-props";
 import { useRoute } from "ziggy-js";
-
-
 
 export default function GradeIndex({ grades}: { grades: Grades}) {
     const route = useRoute();
-    const { flash } = usePage();
+    const { flash } = usePage<PageProps>().props;
 
-    if (flash.status) {
+    if (flash?.status) {
         toast.success(flash.status, {position: 'top-right'});
     }
 
@@ -80,6 +79,6 @@ export default function GradeIndex({ grades}: { grades: Grades}) {
 
 GradeIndex.layout = [
     [Layout],
-    [GradeLayout, {
+    [NestedLayout, {
         title: 'Grades'
     }]]

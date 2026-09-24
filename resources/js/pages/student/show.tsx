@@ -1,29 +1,20 @@
 import { Head, Link, router, setLayoutProps, usePage } from "@inertiajs/react"
 import { Pencil, Trash2 } from "lucide-react"
-import { useEffect } from "react"
 import { toast } from "sonner"
 import { StudentAbout } from "@/components/student/student-about"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import GradeLayout from "@/layouts/grade-layout"
 import Layout from "@/layouts/layout"
-import type { Grade } from "@/types/grade"
-import type{ Student } from "@/types/student"
+import NestedLayout from "@/layouts/nested-layout"
+import type { PageProps } from "@/types/page-props"
+import type { StudentWithGrade } from "@/types/student"
 import { useRoute } from "ziggy-js"
 
-type StudentWithGrade = Student & {
-    grade: Grade
-}
-
-interface Props{
-    student: StudentWithGrade;
-}
-
-export default function StudentShow({ student }: Props) {
+export default function StudentShow({ student }: {student: StudentWithGrade}) {
     const route = useRoute();
-    const { flash } = usePage();
+    const { flash } = usePage<PageProps>().props;
 
-    if (flash.status) {
+    if (flash?.status) {
         toast.success(flash.status, { position: 'top-right' });
     }
     
@@ -89,5 +80,5 @@ export default function StudentShow({ student }: Props) {
 
 StudentShow.layout = {
     Layout,
-    student:GradeLayout
+    student:NestedLayout
 }

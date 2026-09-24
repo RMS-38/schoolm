@@ -1,7 +1,7 @@
 import { setLayoutProps } from "@inertiajs/react";
 import { GradeForm } from "@/components/grades/grade-form";
-import GradeLayout from "@/layouts/grade-layout";
 import Layout from "@/layouts/layout";
+import NestedLayout from "@/layouts/nested-layout";
 import type{ Grade } from "@/types/grade";
 import type{ Subject } from "@/types/subject";
 
@@ -34,5 +34,5 @@ export default function GradeEdit({ subjects, grade }: Props) {
 
 GradeEdit.layout = {
     Layout,
-    grade: GradeLayout,
+    grade: NestedLayout,
 }

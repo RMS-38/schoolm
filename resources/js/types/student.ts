@@ -1,3 +1,4 @@
+import type{ Grade } from "./grade";
 import type{ Paginated } from "./paginated";
 
 export type Student = {
@@ -16,3 +17,6 @@ export type Student = {
 }
 
 export type Students = Paginated<Student>;
+
+export type StudentWithGrade = Student & { grade: Grade };
+export type StudentsWithGrade = Paginated<StudentWithGrade>;

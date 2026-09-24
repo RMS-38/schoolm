@@ -15,7 +15,13 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::with('grade')->paginate(10);
+        $students = Student::with('grade')
+            ->when(request('search'), function ($q, $search) {
+                $q->where('name', 'like', '%' . $search . '%');
+            })
+            ->paginate(10)
+            ->withQueryString();
+
         return Inertia::render('student/index', [
             'students' => $students
         ]);

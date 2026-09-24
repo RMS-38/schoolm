@@ -12,10 +12,11 @@ import {
     TabsList,
     TabsTrigger
 } from "@/components/ui/tabs";
-import GradeLayout from "@/layouts/grade-layout";
 import Layout from "@/layouts/layout";
+import NestedLayout from "@/layouts/nested-layout";
 import type { Grade } from "@/types/grade";
-import type {  Report, ReportYear } from "@/types/report";
+import type { PageProps } from "@/types/page-props";
+import type { Report, ReportYear } from "@/types/report";
 import type { Subject } from "@/types/subject";
 import { useRoute } from "ziggy-js";
 
@@ -31,7 +32,7 @@ interface Props{
 
 export default function GradeShow({ grade, reportCards, yearReportsCards}: Props) {
     const route = useRoute();
-    const { flash } = usePage();
+    const { flash } = usePage<PageProps>().props;
     
 
     setLayoutProps('grade',{
@@ -42,7 +43,7 @@ export default function GradeShow({ grade, reportCards, yearReportsCards}: Props
         ]
     })
 
-    if (flash.status) {
+    if (flash?.status) {
         toast.success(flash.status, { position: 'top-right' });
     }
 
@@ -122,5 +123,5 @@ export default function GradeShow({ grade, reportCards, yearReportsCards}: Props
 
 GradeShow.layout = {
     layout:Layout,
-    grade: GradeLayout
+    grade: NestedLayout
 }
