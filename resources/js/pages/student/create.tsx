@@ -11,10 +11,10 @@ export default function StudentCreate() {
 StudentCreate.layout = [
     [Layout],
     [NestedLayout, {
-        title: 'Inscriptions',
+        title: 'Student enrollment ',
         breadCrumb: [
                 { title: 'Student', routeName: 'student.index' },
-                { title: 'Inscriptions', routeName: 'student.create', currentPage:true}
+                { title: 'Enrollment', routeName: 'student.create', currentPage:true}
             ]
     }]
 ]
